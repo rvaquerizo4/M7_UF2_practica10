@@ -11,11 +11,13 @@ def paisQuantitat(pais1, pais2 , pais3 , pais4 ,pais5 ,pais6 ,pais7 ,pais8 ,pais
     listapaises3 = pd.DataFrame(separar, columns=[1])
     listapaises4 = pd.DataFrame(listapaises2, columns=["location", "total_cases"])
     listaDefinitiva = pd.concat([listapaises4, listapaises3], axis=1)
-    print(listaDefinitiva)
+    listaAgrupada = listaDefinitiva.rename(columns={1:'mes'})
+    listaAgrupada2 = listaAgrupada.groupby(['location', 'mes']).sum()
+    print(listaAgrupada2)
+    return listaAgrupada2
 
-    return listapaises2
 
-def mortsTotals(pais1, pais2 , pais3 , pais4 ,pais5 ,pais6 ,pais7 ,pais8 ,pais9 ,pais10):
+"""def mortsTotals(pais1, pais2 , pais3 , pais4 ,pais5 ,pais6 ,pais7 ,pais8 ,pais9 ,pais10):
     list = pd.read_csv('list.csv')
     filtro = (list['location'] == pais1) | (list['location'] == pais2) | (list['location'] == pais2) | (
                 list['location'] == pais3) | (list['location'] == pais4) | (list['location'] == pais5) | (
@@ -40,9 +42,11 @@ def reproduccionRate(pais1, pais2 , pais3 , pais4 ,pais5 ,pais6 ,pais7 ,pais8 ,p
     listapaises2 = listapaises[selectedCols]
     print(listapaises2)
     return listapaises2
-
+"""
 
 
 paisQuantitat("Albania", "Algeria", "Argentina", "Mexico", "Thailand", "Japan", "Singapore", "Spain", "France", "Afghanistan")
+"""
 mortsTotals("Albania", "Algeria", "Argentina", "Mexico", "Thailand", "Japan", "Singapore", "Spain", "France", "Afghanistan")
 reproduccionRate("Albania", "Algeria", "Argentina", "Mexico", "Thailand", "Japan", "Singapore", "Spain", "France", "Afghanistan")
+"""
